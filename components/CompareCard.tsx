@@ -87,11 +87,41 @@ export default function CompareCard({ aura1, aura2 }: { aura1: AuraData, aura2: 
             </div>
           </div>
 
-          {/* Center VS & Stats */}
-          <div className="w-full lg:w-[400px] shrink-0 flex flex-col items-center justify-center gap-6 order-3 lg:order-2">
-            <div className="relative w-24 h-24 lg:w-32 lg:h-32 rounded-full flex items-center justify-center">
+          {/* Mobile Isolated VS Orb (Between Users) */}
+          <div className="flex lg:hidden w-full items-center justify-center order-2 -my-8 z-30 pointer-events-none">
+            <div className="relative w-20 h-20 rounded-full flex items-center justify-center">
+              <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-purple-600 rounded-full blur-xl opacity-60 mix-blend-screen animate-pulse" />
+              <div className="relative w-14 h-14 rounded-full bg-black/80 border-2 border-white/20 backdrop-blur-2xl flex items-center justify-center text-transparent bg-clip-text bg-gradient-to-br from-white to-zinc-500 font-black italic text-xl shadow-[0_0_40px_rgba(0,0,0,0.8)] z-30">
+                VS
+              </div>
+            </div>
+          </div>
+
+          {/* Right User Info (now order-3 on mobile) */}
+          <div className="flex-1 flex flex-col items-center lg:items-end text-center lg:text-right justify-center lg:justify-between order-3 lg:order-3 pb-8 lg:pb-0 mb-8 lg:mb-0">
+            <div className="hidden lg:block text-white/40 font-mono text-sm tracking-widest uppercase bg-black/40 px-4 py-1 rounded-full border border-white/10 backdrop-blur-md mb-8">Challenger 2</div>
+            <div className="flex flex-col items-center lg:items-end gap-6">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <div className="relative">
+                <div className="absolute inset-[-10px] rounded-full blur-xl opacity-50 mix-blend-screen" style={{ background: aura2.colors[0] }} />
+                <img src={aura2.avatar} alt={aura2.username} crossOrigin="anonymous" className="relative w-32 h-32 lg:w-40 lg:h-40 rounded-3xl border border-white/20 shadow-2xl object-cover bg-black z-10" />
+              </div>
+              <div className="bg-black/40 backdrop-blur-xl p-4 lg:p-6 rounded-2xl border border-white/5 shadow-2xl w-full max-w-sm">
+                <h1 className="text-3xl lg:text-5xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-bl from-white to-white/50 pb-2">{aura2.username}</h1>
+                <p className="text-white/80 font-mono text-xs lg:text-sm uppercase tracking-wider">{aura2.title}</p>
+                <div className="mt-4 px-3 py-1 bg-white/5 rounded-full w-fit border border-white/10 text-xs font-mono ml-auto mr-auto lg:ml-auto lg:mr-0">
+                  <span className="opacity-50">Score:</span> <span className="font-bold text-white">{Math.round(a2Score)}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Center VS & Stats (order-4 on mobile, order-2 on desktop) */}
+          <div className="w-full lg:w-[400px] shrink-0 flex flex-col items-center justify-center gap-6 order-4 lg:order-2">
+            {/* Desktop VS Orb */}
+            <div className="hidden lg:flex relative w-32 h-32 rounded-full items-center justify-center">
               <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-purple-600 rounded-full blur-2xl opacity-60 mix-blend-screen animate-pulse" />
-              <div className="relative w-16 h-16 lg:w-24 lg:h-24 rounded-full bg-black/80 border-2 border-white/20 backdrop-blur-2xl flex items-center justify-center text-transparent bg-clip-text bg-gradient-to-br from-white to-zinc-500 font-black italic text-2xl lg:text-4xl shadow-[0_0_40px_rgba(0,0,0,0.8)] z-30">
+              <div className="relative w-24 h-24 rounded-full bg-black/80 border-2 border-white/20 backdrop-blur-2xl flex items-center justify-center text-transparent bg-clip-text bg-gradient-to-br from-white to-zinc-500 font-black italic text-4xl shadow-[0_0_40px_rgba(0,0,0,0.8)] z-30">
                 VS
               </div>
             </div>
@@ -155,25 +185,6 @@ export default function CompareCard({ aura1, aura2 }: { aura1: AuraData, aura2: 
                 </div>
               </div>
 
-            </div>
-          </div>
-
-          {/* Right User Info */}
-          <div className="flex-1 flex flex-col items-center lg:items-end text-center lg:text-right justify-center lg:justify-between order-2 lg:order-3 pb-8 lg:pb-0 border-b border-white/10 lg:border-none mb-8 lg:mb-0">
-            <div className="hidden lg:block text-white/40 font-mono text-sm tracking-widest uppercase bg-black/40 px-4 py-1 rounded-full border border-white/10 backdrop-blur-md mb-8">Challenger 2</div>
-            <div className="flex flex-col items-center lg:items-end gap-6">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <div className="relative">
-                <div className="absolute inset-[-10px] rounded-full blur-xl opacity-50 mix-blend-screen" style={{ background: aura2.colors[0] }} />
-                <img src={aura2.avatar} alt={aura2.username} crossOrigin="anonymous" className="relative w-32 h-32 lg:w-40 lg:h-40 rounded-3xl border border-white/20 shadow-2xl object-cover bg-black z-10" />
-              </div>
-              <div className="bg-black/40 backdrop-blur-xl p-4 lg:p-6 rounded-2xl border border-white/5 shadow-2xl w-full max-w-sm">
-                <h1 className="text-3xl lg:text-5xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-bl from-white to-white/50 pb-2">{aura2.username}</h1>
-                <p className="text-white/80 font-mono text-xs lg:text-sm uppercase tracking-wider">{aura2.title}</p>
-                <div className="mt-4 px-3 py-1 bg-white/5 rounded-full w-fit border border-white/10 text-xs font-mono ml-auto mr-auto lg:ml-auto lg:mr-0">
-                  <span className="opacity-50">Score:</span> <span className="font-bold text-white">{Math.round(a2Score)}</span>
-                </div>
-              </div>
             </div>
           </div>
 
