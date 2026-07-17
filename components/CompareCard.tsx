@@ -152,6 +152,18 @@ export default function CompareCard({ aura1, aura2 }: { aura1: AuraData, aura2: 
                 </div>
 
               </div>
+              {/* Pull Requests */}
+              <div className="flex flex-col gap-2 w-full bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-2xl">
+                <div className="flex justify-between text-xs text-white/50 font-mono uppercase tracking-wider">
+                  <span className={getWinner(aura1.pullRequests, aura2.pullRequests) === 1 ? 'text-white font-bold' : ''}>{aura1.pullRequests}</span>
+                  <span>Pull Requests</span>
+                  <span className={getWinner(aura1.pullRequests, aura2.pullRequests) === 2 ? 'text-white font-bold' : ''}>{aura2.pullRequests}</span>
+                </div>
+                <div className="flex h-2 bg-white/5 rounded-full overflow-hidden">
+                  <div className="bg-white/80" style={{ width: `${(aura1.pullRequests / (Math.max(1, aura1.pullRequests + aura2.pullRequests))) * 100}%` }} />
+                  <div className="bg-white/30" style={{ width: `${(aura2.pullRequests / (Math.max(1, aura1.pullRequests + aura2.pullRequests))) * 100}%` }} />
+                </div>
+              </div>
             </div>
 
             {/* Right User Info */}

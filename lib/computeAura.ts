@@ -1,4 +1,4 @@
-import { fetchUser, fetchRepos, fetchRepoLanguages, fetchEvents } from './github';
+import { fetchUser, fetchRepos, fetchRepoLanguages, fetchEvents, fetchPullRequestsCount } from './github';
 import { generateAuraTitle } from './auraTitle';
 import { getLanguageColor } from './languageColors';
 import { generatePercentiles } from './percentiles';
@@ -17,13 +17,17 @@ export interface AuraData {
   particles: { color: string; size: number }[];
   ranks: { nightOwlRank: number, consistencyRank: number, activityRank: number };
   insights: string[];
+  pullRequests: number;
   rivals?: { username: string; avatarUrl: string; title: string; score: number; topColor: string }[];
 }
 
 export async function computeAura(username: string): Promise<AuraData> {
-  const user = await fetchUser(username);
-  const repos = await fetchRepos(username);
-  const events = await fetchEvents(username);
+  const [user, repos, events, pullRequests] = await Promise.all([
+    fetchUser(username),
+    fetchRepos(username),
+    fetchEvents(username),
+    fetchPullRequestsCount(username)
+  ]);
 
   // Analyze events
   let nightOwlEvents = 0;
@@ -91,6 +95,7 @@ export async function computeAura(username: string): Promise<AuraData> {
     totalEvents: events.length,
     particles,
     ranks,
-    insights
+    insights,
+    pullRequests
   };
 }

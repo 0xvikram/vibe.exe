@@ -56,3 +56,13 @@ export async function fetchEvents(username: string): Promise<any[]> {
   }
   return res.json();
 }
+
+export async function fetchPullRequestsCount(username: string): Promise<number> {
+  const res = await fetch(`${GITHUB_API_URL}/search/issues?q=type:pr+author:${username}`, { headers: getHeaders() });
+  if (!res.ok) {
+    if (res.status === 403) throw new Error('Rate limit exceeded');
+    return 0;
+  }
+  const data = await res.json();
+  return data.total_count || 0;
+}

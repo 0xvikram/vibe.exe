@@ -169,6 +169,10 @@ export default function AuraCard({ aura }: { aura: AuraData }) {
               <div className="flex flex-col gap-3">
                 <PercentileChip label="Night Owl" percentile={aura.ranks?.nightOwlRank || 50} />
                 <PercentileChip label="Consistency" percentile={aura.ranks?.consistencyRank || 50} />
+                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/40 backdrop-blur-xl border border-white/10 text-xs font-mono text-white/70">
+                  <span className="opacity-50">PRs</span>
+                  <span className="text-white font-bold">{aura.pullRequests || 0}</span>
+                </div>
               </div>
               
               <motion.div variants={itemVariants} className="text-white/40 font-mono text-sm tracking-widest uppercase">
