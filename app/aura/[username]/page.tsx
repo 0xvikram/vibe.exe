@@ -89,7 +89,7 @@ export default function AuraPage() {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 1.5 + i * 0.1 }}
-                onClick={() => router.push(`/aura/${r.username}`)}
+                onClick={() => router.push(`/compare/${aura.username}/${r.username}`)}
                 className="flex items-center gap-3 p-3 bg-zinc-900/40 rounded-xl border border-zinc-800 hover:bg-zinc-800/60 cursor-pointer transition-colors w-full relative overflow-hidden"
               >
                 <div className="absolute inset-0 opacity-20" style={{ background: `linear-gradient(90deg, ${r.topColor}, transparent)` }} />
@@ -123,7 +123,7 @@ export default function AuraPage() {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 1.5 + i * 0.1 }}
-                onClick={() => router.push(`/aura/${r.username}`)}
+                onClick={() => router.push(`/compare/${aura.username}/${r.username}`)}
                 className="flex items-center gap-3 p-3 bg-zinc-900/40 rounded-xl border border-zinc-800 hover:bg-zinc-800/60 cursor-pointer transition-colors w-full relative overflow-hidden"
               >
                 <div className="absolute inset-0 opacity-20" style={{ background: `linear-gradient(-90deg, ${r.topColor}, transparent)` }} />
@@ -148,7 +148,7 @@ export default function AuraPage() {
               {aura.rivals.slice(0, 6).map((r, i) => (
                 <div 
                   key={r.username}
-                  onClick={() => router.push(`/aura/${r.username}`)}
+                  onClick={() => router.push(`/compare/${aura.username}/${r.username}`)}
                   className="flex items-center gap-4 p-4 bg-zinc-900/40 rounded-xl border border-zinc-800 hover:bg-zinc-800/60 cursor-pointer transition-colors relative overflow-hidden"
                 >
                   <div className="absolute inset-0 opacity-10" style={{ background: `linear-gradient(90deg, ${r.topColor}, transparent)` }} />
