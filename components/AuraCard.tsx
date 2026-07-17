@@ -156,9 +156,23 @@ export default function AuraCard({ aura }: { aura: AuraData }) {
         </div>
       </motion.div>
 
-      <div className="flex gap-4 items-center">
+      <div className="flex flex-col sm:flex-row gap-4 items-center">
         <Button onClick={handleDownload} className="gap-2 bg-white text-black hover:bg-zinc-200" size="lg">
           <Download className="w-4 h-4" /> Export Card
+        </Button>
+        <Button 
+          onClick={() => {
+            const text = `I just discovered my GitHub Dev Aura: ${aura.title}! ✨\n\nGenerate yours:`;
+            const url = `https://vibe-exe.vercel.app/aura/${aura.username}`;
+            window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+          }}
+          className="gap-2 bg-blue-500 text-white hover:bg-blue-600 border border-blue-400/50" 
+          size="lg"
+        >
+          <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+          Share on X
         </Button>
       </div>
       
