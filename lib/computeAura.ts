@@ -17,6 +17,7 @@ export interface AuraData {
   particles: { color: string; size: number }[];
   ranks: { nightOwlRank: number, consistencyRank: number, activityRank: number };
   insights: string[];
+  rivals?: { username: string; avatarUrl: string; title: string; score: number; topColor: string }[];
 }
 
 export async function computeAura(username: string): Promise<AuraData> {

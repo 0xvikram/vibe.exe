@@ -1,0 +1,25 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model AuraUser {
+  id              String   @id @default(cuid())
+  username        String   @unique
+  avatarUrl       String
+  title           String
+  score           Float
+  nightOwlPercent Float
+  variance        Float
+  reposCount      Int
+  totalEvents     Int
+  topColor        String
+  updatedAt       DateTime @updatedAt
+  createdAt       DateTime @default(now())
+
+  @@index([score])
+}
