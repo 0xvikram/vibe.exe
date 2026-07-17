@@ -19,20 +19,20 @@ export default function AuraBlob({ colors, variance }: AuraBlobProps) {
             <feTurbulence
               type="fractalNoise"
               baseFrequency={baseFreq}
-              numOctaves="3"
+              numOctaves="4"
               result="noise"
             >
               <animate
                 attributeName="baseFrequency"
                 values={`${baseFreq};${baseFreq * 1.5};${baseFreq}`}
-                dur="10s"
+                dur="12s"
                 repeatCount="indefinite"
               />
             </feTurbulence>
             <feDisplacementMap
               in="SourceGraphic"
               in2="noise"
-              scale="60"
+              scale="150"
               xChannelSelector="R"
               yChannelSelector="G"
               result="displaced"
