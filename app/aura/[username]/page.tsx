@@ -128,13 +128,39 @@ export default function AuraPage() {
               >
                 <div className="absolute inset-0 opacity-20" style={{ background: `linear-gradient(-90deg, ${r.topColor}, transparent)` }} />
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={r.avatarUrl} alt={r.username} className="w-10 h-10 rounded-full border border-zinc-700 relative z-10" />
+                <img src={r.avatarUrl} alt={r.username} className="w-10 h-10 rounded-full border border-zinc-700 relative z-10 bg-black" />
                 <div className="flex flex-col relative z-10 truncate">
                   <span className="text-zinc-200 font-medium text-sm truncate">{r.username}</span>
                   <span className="text-zinc-500 text-xs">Score: {Math.round(r.score)}</span>
                 </div>
               </motion.div>
             ))}
+          </div>
+        </div>
+      )}
+
+      {/* Mobile Rivals Layout (Visible only on < xl screens) */}
+      {aura && !loading && !error && aura.rivals && aura.rivals.length > 0 && (
+        <div className="xl:hidden w-full max-w-5xl mt-12 flex flex-col gap-8">
+          <div className="flex flex-col gap-4">
+            <div className="text-zinc-500 font-mono text-xs uppercase tracking-widest px-2">Rivals Orbit</div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {aura.rivals.slice(0, 6).map((r, i) => (
+                <div 
+                  key={r.username}
+                  onClick={() => router.push(`/aura/${r.username}`)}
+                  className="flex items-center gap-4 p-4 bg-zinc-900/40 rounded-xl border border-zinc-800 hover:bg-zinc-800/60 cursor-pointer transition-colors relative overflow-hidden"
+                >
+                  <div className="absolute inset-0 opacity-10" style={{ background: `linear-gradient(90deg, ${r.topColor}, transparent)` }} />
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={r.avatarUrl} alt={r.username} className="w-12 h-12 rounded-full border border-zinc-700 relative z-10 bg-black" />
+                  <div className="flex flex-col relative z-10 truncate">
+                    <span className="text-zinc-200 font-medium truncate">{r.username}</span>
+                    <span className="text-zinc-500 text-sm">Score: {Math.round(r.score)}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       )}
